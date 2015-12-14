@@ -24,9 +24,12 @@ router.get('/', function(req, res, next) {
 router.post ('/onboarding', function( req, res ){
         if(!req.body) return res.sendStatus(400)
         
-	var email= req.body.username;
+	var user={
+		    username: req.body.username,
+		    email: req.body.Email
+		}
 	
-	res.json(email);
+	res.json(user);
         });
 
 router.get ('/test', function( req, res ){
