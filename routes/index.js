@@ -5,17 +5,14 @@ var router = express.Router();
 
  // An object of options to indicate where to post to
   var post_to_validate_user = {
-      host: 'www.assembleechretienne.com/',
+      host: 'http://www.assembleechretienne.com/',
       port: '8080',
-      path: '/AssembleeChretienneAPI/webapi/onboarding/validate',
+      path: '/AssembleeChretienneAPI/webapi/onboarding',
       method: 'POST',
       headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/json'
          }
   };
-
-
-
 
 
 /* GET home page. */
