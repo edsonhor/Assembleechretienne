@@ -39,23 +39,70 @@
 
 <script>
 $(function(){
+$('.signup').click(function(){$('.ui.modal').modal({
+                        detachable: true,
+                        closable: false,
+                        transition: 'fade up'
+                }).modal('show');
 
-$('.signup').click(function(){$('.ui.modal').modal('show');});
+var formValidationRules=$('.ui.form.onboarding').form({
+        on: 'blur',
+    fields: {
+      email: {
+        identifier : 'Email',
+        rules: [
+          {
+            type   : 'email',
+            prompt : 'Please enter a valid e-mail'
+          }
+        ]
+      },
 
-$('.ui.blue.submit.button').click(function(){ 
+   username: {
+        identifier : 'username',
+        rules: [
+          {
+            type   : 'empty',
+            prompt : 'Please enter a username'
+          }
+        ]
+      },
 
+       match: {
+       identifier  : 'password2',
+       rules: [
+          {
+            type   : 'match[password1]',
+            prompt : 'Please put the same value in both fields for password'
+          }
+        ]
+      }
+ }
+ });
+
+$('.ui.blue.submit.button').click(function(){
+
+var isFormValid=$('.ui.form.onboarding').form('is valid');
+
+if(isFormValid){
 var value= $(".onboarding").serializeArray();
 
 $.ajax({
   method: "POST",
   url: "http://www.assembleechretienne.com/onboarding",
-  data: value
-})
-  .done(function( msg ) {
-    alert( "Data Saved: " + JSON.stringify(msg) );
+  data: value,
+  success:function( msg, textStatus, jqXHR ) {
+    alert( "Message From Server: " + JSON.stringify(msg)+ "/n" + "Status : " +JSON.stringify(textStatus)
+        +"\n"+"jqxHR : "+JSON.stringify(jqXHR) );}
+
+}) .fail(function(jqXHR, textStatus, errorThrown) {
+	  alert( "JQXHR: " + JSON.stringify(JqXHR)+ "/n" + "Status : " +JSON.stringify(textStatus)
+        +"\n"+"error : "+JSON.stringify(errorThrown) );
   });
 
 
+  }
+});
 
 });
 
@@ -314,7 +361,7 @@ $.ajax({
     <div class="ui form segment">
   <p>Tell Us About Yourself</p>
   
-  <form class="onboarding" enctype="multipart/form-data">
+  <form class="ui form onboarding" enctype="multipart/form-data">
   
   <div class="field">
     <label>Email</label>
@@ -327,17 +374,18 @@ $.ajax({
   </div>
   <div class="field">
     <label>Password</label>
-    <input type="password" name="password">
+    <input type="password" name="password1">
   </div>
   
   <div class="field">
     <label>Retapes Password</label>
-    <input type="password" name="password">
+    <input type="password" name="password2">
   </div>
   
    <input type="file" name="pic" accept="image/*">
   
   <div class="ui blue submit button">Submit</div>
+ <div class="ui error message"></div>
   </form>
 </div>
   </div>
