@@ -11,23 +11,33 @@ router.get('/', function(req, res, next) {
 });
 
 
+
+
+
+
+
+passport.use(new Strategy(
+  function(username, password, cb) {
+  }));
+
+
+
+
+/* User Registration */
+
 router.post ('/onboarding', function( req, res ){
-
-        if(!req.body) return res.sendStatus(400)
-       
-
-
+ if(!req.body) return res.sendStatus(400)
 var incoming_request =JSON.stringify({
                     username: req.body.username,
                     email: req.body.Email,
-                    password: "test"
+                    password: req.body.password1
 });
 
       // An object of options to indicate where to post to
       var option_to_validate_user = {
       host: 'www.assembleechretienne.com',
       port: '8080',
-      path: '/AssembleeChretienneAPI/webapi/onboarding',
+      path: '/api/webapi/onboarding',
       method: 'POST',
       headers: {
           'Content-Type': 'application/json',
@@ -63,6 +73,13 @@ var incoming_request =JSON.stringify({
              request.write(incoming_request);
              request.end();
         });
+
+
+
+
+
+
+
 
 
 

@@ -87,8 +87,7 @@ if(isFormValid){
 var value= $(".onboarding").serializeArray();
 
 
-var postdata=$.post( "http://www.assembleechretienne.com/onboarding", value, function( data ) {
-});
+var postdata=$.post( "http://www.assembleechretienne.com/onboarding", value);
 
 postdata.done( function (data){
  alert( "Thank you for registering with Assemblee Chretieene. You can now log into the site any time");
