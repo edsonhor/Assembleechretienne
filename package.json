@@ -11,16 +11,12 @@
     "debug": "~2.2.0",
     "ejs": "~2.3.3",
     "express": "~4.13.1",
+    "express-session": "^1.12.1",
     "morgan": "~1.6.1",
-<<<<<<< HEAD
-    "serve-favicon": "~2.3.0",
     "multer": "~1.1.0",
+    "passport": "~0.3.2",
     "passport-local": "~1.0.0",
-    "passport": "~0.3.2"
-  }
-}
-=======
     "serve-favicon": "~2.3.0"
-  }
+  },
+  "serve-favicon": "~2.3.0"
 }
->>>>>>> e4a270a9f3b44722380f9e0558ee7345ec74d4e3

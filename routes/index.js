@@ -11,17 +11,81 @@ router.get('/', function(req, res, next) {
 });
 
 
-
-
-
-
+/*Setting up passport */
 
 passport.use(new Strategy(
-  function(username, password, cb) {
-  }));
+  {
+    usernameField: 'email',
+    passwordField: 'password'
+  },
+function(email, password, cb) {
+
+ var requestdata="{\"email\" : "+ "\"" +  email +  "\"" +   " ,\"password\" : " + "\"" + password  +"\""+ " }";
+ 
+   // An object of options to indicate where to post validation credential
+      var option_to_validate_user = {
+      host: 'www.assembleechretienne.com',
+      port: '8080',
+      path: '/api/webapi/onboarding/validate',
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json',
+          'Content-Length':requestdata.length
+         }
+      };
+var user;
+
+ var request = http.request(option_to_validate_user, function(resp) {
+		      var data="";
+           resp.setEncoding('utf8');
+           resp.on('data', function (chunk) {
+               data +=chunk;
+               });
+               resp.on('end', function() {
+               user= JSON.parse(data);     
+            if(user.authentication == "false"){
+              cb(null,false);
+              }
+              if(user.authentication == "true"){
+               cb(null,user);
+               }
+		})
+              });
+
+        request.write(requestdata);
+        request.end();
+
+           request.on('error', function(e) {
+           var  error='problem with request: ' + e.message;
+           });
+	}));
+
+// In order to restore authentication state across HTTP requests, Passport needs
+// to serialize users into and deserialize users out of the session.  The
+// typical implementation of this is as simple as supplying the user ID when
+// serializing, and querying the user record by ID from the database when
+// deserializing.
+passport.serializeUser(function(user, cb) {
+  cb(null, user.username);
+});
+
+passport.deserializeUser(function(id, cb) {
+     	var incomingid=id;
+        var user={"name":"test","id":"12345"};
+	cb(null, user);
+  });
 
 
 
+router.get ('/test', function( req, res ){
+           res.send('We GOT THE PAYLOAD');
+        });
+
+router.post('/test', 
+  passport.authenticate('local', { failureRedirect: '/index' }),
+  function(req, res) {
+     res.send('We GOT THE PAYLOAD'+req.user);
+  });
 
 /* User Registration */
 
@@ -73,13 +137,6 @@ var incoming_request =JSON.stringify({
              request.write(incoming_request);
              request.end();
         });
-
-
-
-
-
-
-
 
 
 
