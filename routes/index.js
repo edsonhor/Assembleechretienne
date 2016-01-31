@@ -5,6 +5,10 @@ var Strategy= require('passport-local').Strategy;
 var router = express.Router();
 var http= require('http');
 var console = require('console').Console;
+var Redis = require('ioredis');
+
+
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
@@ -42,12 +46,13 @@ var user;
                data +=chunk;
                });
                resp.on('end', function() {
-               user= JSON.parse(data);     
+               user= JSON.parse(data);
+	       user['email']=email;     
             if(user.authentication == "false"){
-              cb(null,false);
+            return  cb(null,false,{message:"Incorrect username or password"});
               }
               if(user.authentication == "true"){
-               cb(null,user);
+             return  cb(null,user);
                }
 		})
               });
@@ -66,11 +71,23 @@ var user;
 // serializing, and querying the user record by ID from the database when
 // deserializing.
 passport.serializeUser(function(user, cb) {
-  cb(null, user.username);
+  cb(null, user.email);
 });
 
-passport.deserializeUser(function(id, cb) {
-     	var incomingid=id;
+passport.deserializeUser(function(email, cb) {
+     	// Try to hit the Redis cache to see if the session data is available there
+	var redis = new Redis();
+	redis.get(email, function (err, result) {
+        // if the data is not in the cache the get it from the database. 
+	// the database will add it to the cache so next time it's available there
+       var resulttest= result;
+	if (resulttest){
+	
+	}
+
+       });
+
+
         var user={"name":"test","id":"12345"};
 	cb(null, user);
   });
@@ -82,9 +99,9 @@ router.get ('/test', function( req, res ){
         });
 
 router.post('/test', 
-  passport.authenticate('local', { failureRedirect: '/index' }),
+  passport.authenticate('local',{ failureFlash: 'Invalid username or password',failureFlash: true}),
   function(req, res) {
-     res.send('We GOT THE PAYLOAD'+req.user);
+     res.send('We GOT THE PAYLOAD'+JSON.stringify(req.user));
   });
 
 /* User Registration */

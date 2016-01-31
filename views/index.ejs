@@ -11,7 +11,15 @@
  <script src='assets/library/jquery.min.js'></script>
  <script src='stylesheets/dist/semantic.js'></script>
 <script src="https://maps.googleapis.com/maps/api/js"></script>
- 
+
+ <!-- Angularjs required script -->
+<!-- IE required polyfill -->
+    <script src="es6-shim/es6-shim.min.js"></script>
+    <script src="angular2/bundles/angular2-polyfills.js"></script>
+    <script src="rxjs/bundles/Rx.umd.js"></script>
+    <script src="angular2/bundles/angular2-all.umd.js"></script>
+	<script src='javascripts/app.component.js'></script>
+    <script src='javascripts/main.js'></script>
  
  <script>
       function initialize() {
@@ -192,6 +200,7 @@ return false;
 <div class='ui container dividing header'>
 <div class="ui center aligned container">
   <h1>Bienvenue a la Mission De L'Assemblee Chretienne Par La Foi</h1>
+   
 </div>
 </div>
 
@@ -455,12 +464,6 @@ return false;
       </div>
     </div>
   </div>
-
-
 </div>
-
-
-
-
 </body>
 </html>

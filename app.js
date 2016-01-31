@@ -8,7 +8,7 @@ var routes = require('./routes/index');
 var passport = require('passport');
 var Strategy = require('passport-local').Strategy;
 var app = express();
-
+var flash = require('connect-flash');
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -26,7 +26,7 @@ app.use(session({
   saveUninitialized: true,
   cookie: { secure: false }
 }))
-
+app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 app.use('/', routes);
@@ -39,7 +39,7 @@ app.use(function(req, res, next) {
 });
 
 // error handlers
-
+//Edson has made a change here
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
