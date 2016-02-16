@@ -15,6 +15,13 @@ app.set('view engine', 'ejs');
 
 // uncomment after placing your favicon in /public
 
+app.use(function(req, res, next) {
+ if(!req.secure) {
+   return res.redirect(['https://', req.get('Host'), req.url].join(''));
+ }
+ next();
+});
+
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -37,6 +44,9 @@ app.use(function(req, res, next) {
   err.status = 404;
   next(err);
 });
+
+
+
 
 // error handlers
 //Edson has made a change here
