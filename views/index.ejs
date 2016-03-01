@@ -13,20 +13,35 @@
 
  <!-- Angularjs required script -->
 <!-- IE required polyfill -->
-    <script src="es6-shim/es6-shim.min.js"></script>
-    <script src="angular2/bundles/angular2-polyfills.js"></script>
-    <script src="rxjs/bundles/Rx.umd.js"></script>
-    <script src="angular2/bundles/angular2-all.umd.js"></script>
-	<script src='javascripts/app.component.js'></script>
-    <script src='javascripts/main.js'></script>
-	<script src='javascripts/registration-form.js'></script>
-	<script src='javascripts/registration-form.component.js'></script>
+
+
+
+   <script src="https://code.angularjs.org/2.0.0-beta.7/angular2-polyfills.js"></script>
+    <script src="https://code.angularjs.org/tools/system.js"></script>
+    <script src="https://code.angularjs.org/tools/typescript.js"></script>
+    <script src="https://code.angularjs.org/2.0.0-beta.7/Rx.js"></script>
+    <script src="https://code.angularjs.org/2.0.0-beta.7/angular2.dev.js"></script>
 	
+ <!--   <script src="javascripts/es6-shim/es6-shim.min.js"></script>
+    <script src="javascripts/systemjs/dist/system-polyfills.js"></script>
+    
+	<script src="javascripts/angular2/bundles/angular2-polyfills.js"></script>
+	<script src="javascripts/systemjs/dist/system.src.js"></script>
+	<script src="javascripts/rxjs/bundles/Rx.js"></script>
+    <script src="javascripts/angular2/bundles/angular2.dev.js"></script>
+	<script src="javascripts/rxjs/bundles/Rx.umd.js"></script>
+    <script src="javascripts/angular2/bundles/angular2-all.umd.js"></script>
+-->
+	<script>
+      System.config({
+        transpiler: 'typescript', 
+        typescriptOptions: { emitDecoratorMetadata: true }, 
+        packages: {'javascripts': {defaultExtension: 'ts'}} 
+      });
+      System.import('./javascripts/main.ts')
+            .then(null, console.error.bind(console));
+    </script>
 	
-	
-	
-	
- 
  <script>
       function initialize() {
         var mapCanvas = document.getElementById('map');
@@ -473,6 +488,6 @@ return false;
       </div>
     </div>
   </div>
-  <registration-form></registration-form>
+   <my-app>Loading...</my-app>
 </body>
 </html>
