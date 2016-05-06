@@ -98,11 +98,6 @@ router.get ('/test', function( req, res ){
            res.send('We GOT THE PAYLOAD');
         });
 
-router.post('/test', 
-  passport.authenticate('local',{ failureFlash: 'Invalid username or password',failureFlash: true}),
-  function(req, res) {
-     res.send('We GOT THE PAYLOAD'+JSON.stringify(req.user));
-  });
 
 /* User Registration */
 
@@ -110,13 +105,13 @@ router.post ('/onboarding', function( req, res ){
  if(!req.body) return res.sendStatus(400)
 var incoming_request =JSON.stringify({
                     username: req.body.username,
-                    email: req.body.Email,
-                    password: req.body.password1
+                    email: req.body.email,
+                    password: req.body.password
 });
 
       // An object of options to indicate where to post to
       var option_to_validate_user = {
-      host: 'www.assembleechretienne.com',
+      host: 'localhost',
       port: '8080',
       path: '/api/webapi/onboarding',
       method: 'POST',
@@ -126,28 +121,29 @@ var incoming_request =JSON.stringify({
          }
       };
 
-     var request = http.request(option_to_validate_user, function(resp) {
-
-               var debuginfo={
+ var response_to_javascript={
 			status: "",
-			header:"",
-			eom:"",
 			body:"",
 			error:""
 			};
-  	       debuginfo.status= resp.statusCode;
- 	       debuginfo.header= JSON.stringify(resp.headers);
-                resp.setEncoding('utf8');
-                resp.on('data', function (chunk) {
-                debuginfo.body +=chunk;
+            
+     var request = http.request(option_to_validate_user, function(response_from_java_service) {
+  	       response_to_javascript.status= response_from_java_service.statusCode;
+ 	     
+         response_from_java_service.setEncoding('utf8');
+                
+         response_from_java_service.on('data', function (chunk) {
+                response_to_javascript.body +=chunk;
                });
-               resp.on('end', function() {
-               res.json(debuginfo);
+              
+         response_from_java_service.on('end', function() {
+               res.json(response_to_javascript);
                })
               });
       
            request.on('error', function(e) {
-           debuginfo.error='problem with request: ' + e.message;
+           response_to_javascript.error='problem with request: ' + e.message;
+           res.json(response_to_javascript);
            });
 
 // write data to request body

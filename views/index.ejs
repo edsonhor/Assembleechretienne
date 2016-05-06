@@ -16,11 +16,12 @@
 
 
 
-   <script src="https://code.angularjs.org/2.0.0-beta.7/angular2-polyfills.js"></script>
+    <script src="https://code.angularjs.org/2.0.0-beta.9/angular2-polyfills.js"></script>
     <script src="https://code.angularjs.org/tools/system.js"></script>
     <script src="https://code.angularjs.org/tools/typescript.js"></script>
-    <script src="https://code.angularjs.org/2.0.0-beta.7/Rx.js"></script>
-    <script src="https://code.angularjs.org/2.0.0-beta.7/angular2.dev.js"></script>
+    <script src="https://code.angularjs.org/2.0.0-beta.9/Rx.js"></script>
+    <script src="https://code.angularjs.org/2.0.0-beta.9/angular2.dev.js"></script>
+    <script src="https://code.angularjs.org/2.0.0-beta.9/http.dev.js"></script>
 	
  <!--   <script src="javascripts/es6-shim/es6-shim.min.js"></script>
     <script src="javascripts/systemjs/dist/system-polyfills.js"></script>
@@ -73,7 +74,7 @@ $('.signup').click(function(){$('.ui.modal').modal({
   })
   .modal('show');
 
-var formValidationRules=$('.ui.form.onboarding').form({
+var formValidationRules=$('.ui.form.onboarding.nope').form({
         on: 'blur',
     fields: {
       email: {
@@ -389,42 +390,10 @@ return false;
     <div class="ui form segment">
   <p>Tell Us About Yourself</p>
   
-  <form class="ui form onboarding" enctype="multipart/form-data">
-  
-  <div class="field">
-    <label>Email</label>
-    <input placeholder="Email" name="Email" type="text">
-  </div>
-  
-  <div class="field">
-    <label>Nom d'Utilisateur</label>
-    <input placeholder="Nom d'Utilisateur" name="username" type="text">
-  </div>
-  <div class="field">
-    <label>Password</label>
-    <input type="password" name="password1">
-  </div>
-  
-  <div class="field">
-    <label>Retapes Password</label>
-    <input type="password" name="password2">
-  </div>
-  
-   <input type="file" name="pic" accept="image/*">
-  
-  <div class="ui blue submit button">Submit</div>
- <div class="ui error message"></div>
-  </form>
+<my-app>Loading...</my-app>
 </div>
   </div>
-  <div class="actions">
-    <div class="ui black deny button">
-      Nope
-    </div>
-    <div class="ui positive right labeled icon button">
-      Yep, that's me
-      <i class="checkmark icon"></i>
-    </div>
+
   </div>
 </div>
  
@@ -453,16 +422,12 @@ return false;
             <a href="#" class="item">Sitemap</a>
             <a href="#" class="item">Contact Us</a>
             <a href="#" class="item">Religious Ceremonies</a>
-            <a href="#" class="item">Gazebo Plans</a>
           </div>
         </div>
         <div class="three wide column">
           <h4 class="ui  header">Services</h4>
           <div class="ui  link list">
-            <a href="#" class="item">Banana Pre-Order</a>
-            <a href="#" class="item">DNA FAQ</a>
             <a href="#" class="item">How To Access</a>
-            <a href="#" class="item">Favorite X-Men</a>
           </div>
         </div>
 
@@ -488,6 +453,6 @@ return false;
       </div>
     </div>
   </div>
-   <my-app>Loading...</my-app>
+
 </body>
 </html>
