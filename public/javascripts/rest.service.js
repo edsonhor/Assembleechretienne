@@ -16,7 +16,7 @@ require('rxjs/Rx');
 var RestService = (function () {
     function RestService(http) {
         this.http = http;
-        this._onboardingUrl = 'http://localhost:8000/onboarding'; // URL to web api
+        this._onboardingUrl = 'https://www.assembleechretienne.com:8000/onboarding'; // URL to web api
     }
     RestService.prototype.handleError = function (error) {
         // in a real world app, we may send the error to some remote logging infrastructure
