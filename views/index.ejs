@@ -15,13 +15,20 @@
 <!-- IE required polyfill -->
 
 
-
+ <!-- 
     <script src="https://code.angularjs.org/2.0.0-beta.9/angular2-polyfills.js"></script>
     <script src="https://code.angularjs.org/tools/system.js"></script>
     <script src="https://code.angularjs.org/tools/typescript.js"></script>
     <script src="https://code.angularjs.org/2.0.0-beta.9/Rx.js"></script>
     <script src="https://code.angularjs.org/2.0.0-beta.9/angular2.dev.js"></script>
     <script src="https://code.angularjs.org/2.0.0-beta.9/http.dev.js"></script>
+ -->
+    
+    <script src="javascripts/es6-shim/es6-shim.min.js"></script>
+    <script src="javascripts/zone.js/dist/zone.js"></script>
+    <script src="javascripts/reflect-metadata/Reflect.js"></script>
+    <script src="javascripts/systemjs/dist/system.src.js"></script>
+    
 	
  <!--   <script src="javascripts/es6-shim/es6-shim.min.js"></script>
     <script src="javascripts/systemjs/dist/system-polyfills.js"></script>
@@ -33,14 +40,10 @@
 	<script src="javascripts/rxjs/bundles/Rx.umd.js"></script>
     <script src="javascripts/angular2/bundles/angular2-all.umd.js"></script>
 -->
-	<script>
-      System.config({
-        transpiler: 'typescript', 
-        typescriptOptions: { emitDecoratorMetadata: true }, 
-        packages: {'javascripts': {defaultExtension: 'ts'}} 
-      });
-      System.import('./javascripts/main.ts')
-            .then(null, console.error.bind(console));
+	 <!-- 2. Configure SystemJS -->
+    <script src="javascripts/system.config.js"></script>
+    <script>
+      System.import('app').catch(function(err){ console.error(err);  });
     </script>
 	
  <script>

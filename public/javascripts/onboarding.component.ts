@@ -1,8 +1,8 @@
-import {Component} from 'angular2/core';
+import {Component} from '@angular/core';
 import {User} from './User';
 import {RestService} from './rest.service';
-import {OnInit} from 'angular2/core';
-import {Http, HTTP_PROVIDERS} from 'angular2/http';
+import {OnInit} from '@angular/core';
+import {Http, HTTP_PROVIDERS} from '@angular/http';
 
 @Component({
     selector: 'my-app',
