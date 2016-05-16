@@ -13,11 +13,6 @@
   "exclude": [
     "node_modules",
     "typings/main",
-    "typings/main.d.ts",
-    "public/javascripts/@angular",
-    "public/javascripts/reflect-metadata",
-    "public/javascripts/angular2-in-memory-web-api",
-    "public/javascripts/rxjs",
-    "public/javascripts/systemjs"
+    "typings/main.d.ts"
   ]
 }
