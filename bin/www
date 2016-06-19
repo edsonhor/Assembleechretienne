@@ -13,7 +13,7 @@ var fs = require('fs');
 
 var options = {
   key: fs.readFileSync('../../assembleechretienne.com.key.pem'),
-  cert: fs.readFileSync('../../693fbe61d58c47a7.crt')
+  cert: fs.readFileSync('../../chained.crt')
 };
 
 
