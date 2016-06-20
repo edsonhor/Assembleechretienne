@@ -5,7 +5,7 @@
 			"name": "Launch",
 			"type": "node",
 			"request": "launch",
-			"program": "${workspaceRoot}/bin/www",
+			"program": "${workspaceRoot}/bin/wwwdev",
 			"stopOnEntry": false,
 			"args": [],
 			"cwd": "${workspaceRoot}",
@@ -17,7 +17,7 @@
 				"NODE_ENV": "development"
 			},
 			"externalConsole": false,
-			"sourceMaps": false,
+			"sourceMaps": true,
 			"outDir": null
 		},
 		{
@@ -25,10 +25,37 @@
 			"type": "node",
 			"request": "attach",
 			"port": 5858,
-			"sourceMaps": false,
+			"sourceMaps": true,
 			"outDir": null,
 			"localRoot": "${workspaceRoot}",
 			"remoteRoot": null
-		}
+		},
+		{
+            "name": "Launch localhost with sourcemaps",
+            "type": "chrome",
+            "request": "launch",
+            "url": "http://localhost:8000/",
+            "sourceMaps": true,
+             "webRoot": "${workspaceRoot}"
+        },
+		{
+
+            "name": "Attach_chrome",
+            "type": "chrome",
+            "request": "attach",
+            "port": 9222,
+			"sourceMaps": true
+        },
+		
+		{
+			"cwd": "${workspaceRoot}",
+			"request": "launch",
+            "name": "Launch type",
+            "type": "node",
+            "program": "${workspaceRoot}/bin/wwwdev",
+            "stopOnEntry": false,
+            "sourceMaps": true,
+            "outDir": "${workspaceRoot}/CompiledTypeScript"
+        }
 	]
 }
