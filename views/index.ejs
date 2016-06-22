@@ -6,32 +6,27 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
- <link rel='stylesheet' type="text/css" href='stylesheets/dist/semantic.css'>
- <script src='assets/library/jquery.min.js'></script>
- <script src='stylesheets/dist/semantic.js'></script>
-<script src="https://maps.googleapis.com/maps/api/js"></script>
+  <link rel='stylesheet' type="text/css" href='stylesheets/dist/semantic.css'>
+  <script src='assets/library/jquery.min.js'></script>
+  <script src='stylesheets/dist/semantic.js'></script>
+  <script src="https://maps.googleapis.com/maps/api/js"></script>
 
- <!-- 1. Load libraries -->
-     <!-- Polyfill(s) for older browsers 
+  <!-- 1. Load libraries -->
+  <!-- Polyfill(s) for older browsers 
     <script src="javascripts/es6-shim/es6-shim.min.js"></script>
     <script src="javascripts/zone.js/dist/zone.js"></script>
     <script src="javascripts/reflect-metadata/Reflect.js"></script>
     <script src="javascripts/systemjs/dist/system.src.js"></script> -->
-     
-
-   
-    
-
-    <!-- 2. Configure SystemJS
+  <!-- 2. Configure SystemJS
     <script src="javascripts/system.config.js"></script>
     <script>
       System.import('app').catch(function(err){ console.error(err);  });
     </script>  -->
-    
-    
-  </head>
- <script>
-      function initialize() {
+
+
+</head>
+<script>
+  function initialize() {
         var mapCanvas = document.getElementById('map');
         var mapOptions = {
           center: new google.maps.LatLng(18.5330956, -72.3557872),
@@ -41,9 +36,9 @@
         var map = new google.maps.Map(mapCanvas, mapOptions)
       }
       google.maps.event.addDomListener(window, 'load', initialize);
-    </script>
-	
-	<script>
+</script>
+
+<script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -55,216 +50,169 @@
 </script>
 
 <script>
-$(function(){
-$('.signup').click(function(){$('.ui.modal').modal({
-    blurring: true
+  $(function(){
+$('.signup').click(function(){
+  $('#modal1').modal({
+    blurring: true,
   })
   .modal('show');
-
-var formValidationRules=$('.ui.form.onboarding.nope').form({
-        on: 'blur',
-    fields: {
-      email: {
-        identifier : 'Email',
-        rules: [
-          {
-            type   : 'email',
-            prompt : 'Please enter a valid e-mail'
-          }
-        ]
-      },
-
-   username: {
-        identifier : 'username',
-        rules: [
-          {
-            type   : 'empty',
-            prompt : 'Please enter a username'
-          }
-        ]
-      },
-
-       match: {
-       identifier  : 'password2',
-       rules: [
-          {
-            type   : 'match[password1]',
-            prompt : 'Please put the same value in both fields for password'
-          }
-        ]
-      }
- }
- });
-
-$('.ui.blue.submit.button').click(function(){
-
-var isFormValid=$('.ui.form.onboarding').form('is valid');
-
-if(isFormValid){
-var value= $(".onboarding").serializeArray();
-
-
-var postdata=$.post( "http://www.assembleechretienne.com/onboarding", value, function( data ) {
 });
-
-postdata.done( function (data){
- alert( "Thank you for registering with Assemblee Chretieene. You can now log into the site any time");
-});
-
-  }
-
-return false;
-});
-
-});
-
 });
 
 </script>
- <style>
-#blue {
+<style>
+  #blue {
     margin-top: 20px;
     background: #f3f0e9;
     padding-top: 1em;
-}
-#blue h1{
-	font-size: 3.125em;
+  }
+  #blue h1 {
+    font-size: 3.125em;
     line-height: 1.12em;
-}
-
-.ui.vertical.segment{
-
+  }
+  
+  .ui.vertical.segment {
     background: #f7f7f7;
     padding: 1em 0 1.25em .625em;
-}
-
- .loggincolumn {
-       
-	   position:relative;
-    }
-	
-	.ui.grid.log{
-		margin-top: -270px;
-	}
-	
-	.ui.segment.login {
-    position: relative;
-    background: #FFFFF;
-	opacity: .80
-}
-</style>
- 
- </head>
-<body>
-<div class='ui top fixed menu'>
-    <div class='ui container'>
-	<a class='item'> Mission Assemblee Chretienne par la foi</a>
-	<a class='item'> Accueil</a>
-	<a class='item'> Qui Nous Somme</a>
-	<a class='item'> Structure</a>
-	<a class='item'> Notre Histoire</a>
-	<a class='item'> Media</a>
-	<a class='item'> Connection </a>
-	
-	</div>
-</div>
-
-<div class='ui container fluid'> 
-<img class="ui fluid image" src="images/site_image/photo2.png">
-</div>
-
-<div class='ui container'> 
-<div class="ui grid log">
-<div class="twelve wide column "></div>
-  <div class="four wide column logincolumn">
+  }
   
-    <form class="ui large form">
-      <div class="ui segment login">
-        <div class="field">
-          <div class="ui left icon input">
-            <i class="user icon"></i>
-            <input type="text" name="email" placeholder="E-mail address">
-          </div>
-        </div>
+  .loggincolumn {
+    position: relative;
+  }
+  
+  .ui.grid.log {
+    margin-top: -270px;
+  }
+  
+  .ui.segment.login {
+    position: relative;
+    background: #FFFFFF;
+    opacity: .80
+  }
+</style>
 
-        <div class="field">
-          <div class="ui left icon input">
-            <i class="lock icon"></i>
-            <input type="password" name="password" placeholder="Password">
-          </div>
-        </div>
-        <div class="ui fluid large teal submit button">Login</div>
-      </div>
+</head>
+<body>
+  <div class='ui top fixed menu'>
+    <div class='ui container'>
+      <a class='item'> Mission Assemblee Chretienne par la foi</a>
+      <a class='item'> Accueil</a>
+      <a class='item'> Qui Nous Somme</a>
+      <a class='item'> Structure</a>
+      <a class='item'> Notre Histoire</a>
+      <a class='item'> Media</a>
+      <a class='item'> Connection </a>
 
-      <div class="ui error message"></div>
-
-    </form>
-
-    <div class="ui message">
-      New to us? <a class="signup" href="#">Sign Up</a>
     </div>
   </div>
-</div>
- </div>
-<div class='ui container dividing header'>
-<div class="ui center aligned container">
-  <h1>Bienvenue a la Mission De L'Assemblee Chretienne Par La Foi</h1>
-   
-</div>
-</div>
 
-
-
-
-
-<!-- Three picture-->
-
-<div class="ui container"> 
-<div class="ui three column grid">
-  <div class="column">   
-        <img class="ui fluid image" src="images/site_image/16522_10204267201343484_5462212367498842274_n.jpg"> 	
+  <div class='ui container fluid'>
+    <img class="ui fluid image" src="images/site_image/photo2.png">
   </div>
- 
- <div class="column">   
-      <img class="ui fluid image" src="images/site_image/11133978_10204267182343009_6005275067582208816_o.jpg">
- </div>
- 
-  <div class="column">  
-      <img class="ui fluid image" src="images/site_image/11100673_10204267183063027_4590210852413712773_o.jpg">
-  </div>
-</div>
-</div>
 
-<!-- three picture------------------------------------------------------------------------------------------------------>
+  <div class='ui container'>
+    <div class="ui grid log">
+      <div class="twelve wide column "></div>
+      <div class="four wide column logincolumn">
 
+        <form class="ui large form">
+          <div class="ui segment login">
+            <div class="field">
+              <div class="ui left icon input">
+                <i class="user icon"></i>
+                <input type="text" name="email" placeholder="E-mail address">
+              </div>
+            </div>
 
- <div class="ui horizontal divider"></div>
-
-<!-- Mission Statement ------------------------------------------------------------------------------------------------------ -->
-<div class="ui container"> 
-<div class="ui raised segment">
-  <h2 class="ui header">Mots Des Pasteurs</h2>
-  <p> Nous rendons gloire à Dieu le pére de nous avoir donné cet autre outil de communication, car il a dit lui meme dans le livre Det 32 le verset 2  “Que ma parole tombe comme la rosée” ainsi nous voudrions utiliser ce site comme une opportunité afin de pouvoir véhuculer le message de la parole de Dieu à travers le monde.C’est aussi un moyen de permettre aux anciens membres de l’Eglise qui ne sont plus en Haiti de vivre en ligne nos differentes activités( Spirituelles et Sociales). ce site web contient toutes les informations essentielles concernant l’Eglise Assemblé Chretienne par la Foi. Nous avons pour vous a la page d’accueil un menu très chargé et très interessant, nous esperons toute fois que cela arrivera à combler votre attente. Merci déja de vous inscrire parmi nos membres actifs du site, et Dieu dans son Amour infini ne manquera pas de vous combler de toutes sorte de Bénédictions.
-</p>
-</div>
-</div>
-<!-- Mission Statement ---------------------------------------------------------------------------------------------------------->
-
- <div class="ui horizontal divider"></div>
-
- 
- 
-   <div class="ui container">
-<div class="ui grid">
-
-        <div class="left floated ten wide column">
-          <div class="ui segment">
-		  <h2 class="ui header">Histoire de la Mission Assemblee Chretienne</h2>
-            <p>Frere et soeur en Jesus Christ que la grace du Seigneur Jesus Christ soie avec vous. A droite de cet paragraphe contien un video qui decrive l'histoire de l'eglise. Ce video aussi contient notre projet d'aquisition et de construction pour le future. Au decus de cet site internet contient un link qui vous facilitera a faire du donation a la mission.</p>
+            <div class="field">
+              <div class="ui left icon input">
+                <i class="lock icon"></i>
+                <input type="password" name="password" placeholder="Password">
+              </div>
+            </div>
+            <div class="ui fluid large teal submit button">Login</div>
           </div>
+
+          <div class="ui error message"></div>
+
+        </form>
+
+        <div class="ui message">
+          New to us? <a class="signup" href="#">Sign Up</a>
         </div>
-            
-           <iframe class="right floated six wide column width="420" height="315" src="https://www.youtube.com/embed/qk2L695VMK0" frameborder="0" allowfullscreen></iframe>   
+      </div>
+    </div>
+  </div>
+  <div class='ui container dividing header'>
+    <div class="ui center aligned container">
+      <h1>Bienvenue a la Mission De L'Assemblee Chretienne Par La Foi</h1>
+
+    </div>
+  </div>
+
+
+
+
+
+  <!-- Three picture-->
+
+  <div class="ui container">
+    <div class="ui three column grid">
+      <div class="column">
+        <img class="ui fluid image" src="images/site_image/16522_10204267201343484_5462212367498842274_n.jpg">
+      </div>
+
+      <div class="column">
+        <img class="ui fluid image" src="images/site_image/11133978_10204267182343009_6005275067582208816_o.jpg">
+      </div>
+
+      <div class="column">
+        <img class="ui fluid image" src="images/site_image/11100673_10204267183063027_4590210852413712773_o.jpg">
+      </div>
+    </div>
+  </div>
+
+  <!-- three picture------------------------------------------------------------------------------------------------------>
+
+
+  <div class="ui horizontal divider"></div>
+
+  <!-- Mission Statement ------------------------------------------------------------------------------------------------------ -->
+  <div class="ui container">
+    <div class="ui raised segment">
+      <h2 class="ui header">Mots Des Pasteurs</h2>
+      <p> Nous rendons gloire à Dieu le pére de nous avoir donné cet autre outil de communication, car il a dit lui meme dans
+        le livre Det 32 le verset 2 “Que ma parole tombe comme la rosée” ainsi nous voudrions utiliser ce site comme une
+        opportunité afin de pouvoir véhuculer le message de la parole de Dieu à travers le monde.C’est aussi un moyen de
+        permettre aux anciens membres de l’Eglise qui ne sont plus en Haiti de vivre en ligne nos differentes activités(
+        Spirituelles et Sociales). ce site web contient toutes les informations essentielles concernant l’Eglise Assemblé
+        Chretienne par la Foi. Nous avons pour vous a la page d’accueil un menu très chargé et très interessant, nous esperons
+        toute fois que cela arrivera à combler votre attente. Merci déja de vous inscrire parmi nos membres actifs du site,
+        et Dieu dans son Amour infini ne manquera pas de vous combler de toutes sorte de Bénédictions.
+      </p>
+    </div>
+  </div>
+  <!-- Mission Statement ---------------------------------------------------------------------------------------------------------->
+
+  <div class="ui horizontal divider"></div>
+
+
+
+  <div class="ui container">
+    <div class="ui grid">
+
+      <div class="left floated ten wide column">
+        <div class="ui segment">
+          <h2 class="ui header">Histoire de la Mission Assemblee Chretienne</h2>
+          <p>Frere et soeur en Jesus Christ que la grace du Seigneur Jesus Christ soie avec vous. A droite de cet paragraphe
+            contien un video qui decrive l'histoire de l'eglise. Ce video aussi contient notre projet d'aquisition et de
+            construction pour le future. Au decus de cet site internet contient un link qui vous facilitera a faire du donation
+            a la mission.</p>
+        </div>
+      </div>
+
+      <iframe class="right floated six wide column width=" 420 " height="315 " src="https://www.youtube.com/embed/qk2L695VMK0
+        " frameborder="0 " allowfullscreen></iframe>   
  </div>
 </div>
  
@@ -273,7 +221,7 @@ return false;
 <div class='ui container fluid'> 
 	<div class='ui container'> 
 	<h1>Horaire De L'eglise</h1>
-	<table class="ui striped table">
+	<table class="ui striped table ">
   <thead>
     <tr>
       <th>Jour De la Semainer</th>
@@ -368,7 +316,7 @@ return false;
 
  <div class="ui horizontal divider"></div>
  
-   <div class="ui modal">
+  <div class="ui modal united " id="modal1">
   <i class="close icon"></i>
   <div class="header">
     S'inscrire
@@ -383,8 +331,6 @@ return false;
 
   </div>
 </div>
- 
- 
  
  
  

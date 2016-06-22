@@ -1,3 +1,8 @@
+var webpack = require('webpack');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
+
+
 module.exports = {
   entry: {
         bundle: "./public/javascripts/main",
@@ -6,9 +11,18 @@ module.exports = {
     path: __dirname,
     filename: "./public/javascripts/dist/[name].js"
   },
+
+  devtool: 'source-map',
+
   resolve: {
-    extensions: ['', '.js', '.ts']
+    extensions: ["", ".webpack.js", ".web.js", ".ts", ".tsx", ".js"]
   },
+
+  plugins: [
+    new webpack.optimize.CommonsChunkPlugin({
+      name: ['bundle', 'vendor']
+    })],
+    
   module: {
     loaders: [
       {
