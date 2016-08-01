@@ -9,6 +9,8 @@ var passport = require('passport');
 var Strategy = require('passport-local').Strategy;
 var app = express();
 var flash = require('connect-flash');
+var expressJWT= require('express-jwt');
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -16,7 +18,7 @@ app.set('view engine', 'ejs');
 // uncomment after placing your favicon in /public
 
 app.use(function(req, res, next) {
- if(!req.secure) {
+if(!req.secure) {
    return res.redirect(['https://', req.get('Host'), req.url].join(''));
  }
  next();
@@ -25,8 +27,9 @@ app.use(function(req, res, next) {
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(expressJWT({ secret:'my name is edson'}).unless({ path: ['/',path.join(__dirname, 'public'),'/onboarding']}));
+app.use(cookieParser());
 app.use(session({
   secret: 'keyboard cat',
   resave: false,

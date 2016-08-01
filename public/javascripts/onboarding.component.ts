@@ -35,6 +35,13 @@ import {Http, HTTP_PROVIDERS} from '@angular/http';
   
   <button  class="ui blue submit button" type="submit" [disabled]="!onbordingForm.form.valid">Submit</button>
  <div class="ui error message"></div>
+ 
+  <div class="ui united modal" id="modal2">
+ <div class="header">Bienvenue {{username}} Dans La Famille De L'Assemblee Chretienne </div>
+ <div class="content">Nous avons envoyee une message electronic a {{email}} pour validee votre adderss address electronic. Souvient de valider !</div>
+</div>
+
+ 
   </form>
   `,
   styles: [`
@@ -122,9 +129,13 @@ validatePassword1(event:any) {
      var quickvalidation=data;
      if(quickvalidation.error !=""){
          this.errorMessage=quickvalidation.error;
-     }
+          $('.ui.modal').modal('hide');
+          $('#modal2').modal('show');
+                
+    }
      else{
           $('.ui.modal').modal('hide');
+          $('#modal2').modal('show');
      }
        
    }

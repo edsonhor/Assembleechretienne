@@ -6,9 +6,8 @@ var router = express.Router();
 var http= require('http');
 var console = require('console').Console;
 var Redis = require('ioredis');
-
-
-
+var jwt= require('jsonwebtoken');
+var cookieParser = require('cookie-parser');
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
@@ -122,8 +121,8 @@ var incoming_request =JSON.stringify({
       };
 
  var response_to_javascript={
-			status: "",
-			body:"",
+			status: "", // can be valid or invalid
+			body:"",    // I am thinking of creating an object and save the value
 			error:""
 			};
             
@@ -137,7 +136,17 @@ var incoming_request =JSON.stringify({
                });
               
          response_from_java_service.on('end', function() {
-               res.json(response_to_javascript);
+
+               var response_from_java_obj = JSON.parse(response_to_javascript.body);
+               if( response_from_java_obj.onboarding === "successful")
+               {
+                 response_from_java_obj.expiresIn="5m";
+                 var token=jwt.sign(response_from_java_obj, 'my name is edson');
+                 res.cookie('Auth', token,{ maxAge: 900000, httpOnly: true });                  
+               }     
+                res.json(response_from_java_obj);    
+
+    //          res.json(response_to_javascript);
                })
               });
       
@@ -156,5 +165,44 @@ var incoming_request =JSON.stringify({
 router.get ('/test', function( req, res ){
            res.send('We GOT THE PAYLOAD');
         });
+
+var JwtStrategy = require('passport-jwt').Strategy,
+    ExtractJwt = require('passport-jwt').ExtractJwt;
+var opts = {}
+opts.jwtFromRequest = ExtractJwt.fromAuthHeader();
+opts.secretOrKey = 'secret';
+opts.issuer = "edson";
+opts.audience = "this.is.the.audience";
+
+
+
+
+passport.use(new JwtStrategy(opts, function(jwt_payload, done) {
+    if(jwt_payload.email=='edson.philippe@ufl.edu'){
+      return done(null, {"username":"Edson", "lastname":"philippe","message":"edson is the best"})
+    }
+    else
+    {
+      return done(null, false, {message:"incorrect username or password"})
+    }
+}));
+
+
+router.post("/jwttest", function(req,res){
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 module.exports = router;
