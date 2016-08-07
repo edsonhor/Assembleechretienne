@@ -12,7 +12,7 @@ var https = require('https');
 var fs = require('fs');
 
 var options = {
-  key: fs.readFileSync('../../www.assembleechretienne.com.key'),
+  key: fs.readFileSync('../../www.assembleechretienne.com.key.np'),
   cert: fs.readFileSync('../../chained.crt')
 };
 
