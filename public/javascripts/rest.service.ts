@@ -12,7 +12,7 @@ export class RestService {
    
     constructor (private http: Http) {}
     
-  private _onboardingUrl = 'https://www.assembleechretienne.com/onboarding';  // URL to web api
+  private _onboardingUrl = 'http://localhost:8000/onboarding';  // URL to web api
   
   
 
