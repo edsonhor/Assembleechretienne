@@ -1,5 +1,6 @@
-import 'es6-shim';
-import 'reflect-metadata';
+import '@angular/es6-shim';
+import '@angular/reflect-metadata';
+import '@angular/zone.js';
 require('zone.js/dist/zone');
 
   // Development
