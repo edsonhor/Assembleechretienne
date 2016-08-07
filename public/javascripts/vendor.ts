@@ -1,6 +1,5 @@
-import '@angular/es6-shim';
-import '@angular/reflect-metadata';
-import '@angular/zone.js';
+import 'core-js/es6';
+import 'reflect-metadata';
 require('zone.js/dist/zone');
 
   // Development
@@ -15,4 +14,3 @@ import '@angular/http';
 import '@angular/router-deprecated';
 // RxJS
 import 'rxjs';
-
