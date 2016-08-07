@@ -5,6 +5,7 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   entry: {
+        polyfills: './public/javascripts/polyfills.ts',
         vendor: "./public/javascripts/vendor",
         bundle: "./public/javascripts/main"},
   output: {
