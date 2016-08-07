@@ -5,8 +5,8 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   entry: {
-        bundle: "./public/javascripts/main",
-        vendor: "./public/javascripts/vendor"},
+        vendor: "./public/javascripts/vendor",
+        bundle: "./public/javascripts/main"},
   output: {
     path: __dirname,
     filename: "./public/javascripts/dist/[name].js"
@@ -20,7 +20,7 @@ module.exports = {
 
   plugins: [
     new webpack.optimize.CommonsChunkPlugin({
-      name: ['bundle', 'vendor']
+      name: ['vendor','bundle' ]
     })],
     
   module: {
