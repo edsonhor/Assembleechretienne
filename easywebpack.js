@@ -1,29 +1,15 @@
-var webpack = require('webpack');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-
-
 module.exports = {
   entry: {
-        polyfills: './public/javascripts/polyfills.ts',
-        vendor: "./public/javascripts/vendor",
-        bundle: "./public/javascripts/main"},
+        bundle: "./public/javascripts/main",
+        vendor: "./public/javascripts/vendor"},
   output: {
     path: __dirname,
     filename: "./public/javascripts/dist/[name].js"
   },
-
-  devtool: 'source-map',
-
+   devtool: 'source-map',
   resolve: {
-    extensions: ["", ".webpack.js", ".web.js", ".ts", ".tsx", ".js"]
+    extensions: ['', '.js', '.ts']
   },
-
-  plugins: [
-    new webpack.optimize.CommonsChunkPlugin({
-      name: ['vendor','bundle' ]
-    })],
-    
   module: {
     loaders: [
       {
